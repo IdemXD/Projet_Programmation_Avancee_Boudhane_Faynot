@@ -7,7 +7,11 @@
 
 int main()
 {
-  Perso p;
-  creer_perso(&p,5,4);
-  printf("%d, %d\n",p.x, p.y);
+  Perso *p = creer_perso();
+  printf("%d, %d\n",p[0].x, p[0].y);
+  printf("%d, %d\n",p[1].x, p[1].y);
+
+  charger_perso(p);
+
+  free(p);
 }
