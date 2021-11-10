@@ -6,8 +6,7 @@
 
 
 
-int is_in(int element,const char *tab, int tab_length)
-{
+int is_in(int element,const char *tab, int tab_length){
     int trouve = 0;
     int i = 0;
     while (!trouve && (i < tab_length))
@@ -22,6 +21,15 @@ int is_in(int element,const char *tab, int tab_length)
 }
 
 
+void init_salles(char salle[5], salle_t** pl, int n){
+    int i = n/TAILLE_PL;
+    int j = n%TAILLE_PL;
+    pl[i][j].x = j ; // initialisation des coordonées des salles
+    pl[i][j].y = i ; 
+}
+
+
+
 salle_t** creer_plateau(){
     salle_t** tab = malloc(sizeof(salle_t*)*TAILLE_PL) ;
     if (tab == NULL) exit(EXIT_FAILURE);
@@ -34,7 +42,19 @@ salle_t** creer_plateau(){
 
 
 
+char* preparation_chemin(){
+    int no;
+    printf( "Choisissez un numero de plateau: " );
+    scanf( "%i", &no ); // on récupère le numero du niveau
 
+    char* niv; // Taille: nb de char + '\0' de fin de chaine de charactère
+    niv = malloc(sizeof(char)*23);
+
+    // fonction de concatenation du numero du niveau de du chemin
+    snprintf(niv, 23,"niveaux/plateau%i.txt", no);
+
+    return niv;
+}
 
 salle_t** charger_plateau(char* niveau){
      // Creation et allocation d'un plateau à deux dimensions
@@ -95,6 +115,33 @@ salle_t** charger_plateau(char* niveau){
     else{
      return pl;
     } 
+}
+
+void affichage_plateau_lettre(salle_t** pl)
+{
+    // On parcourt le plateau case par case
+    printf("Affichage des lettes des salles du plateau: \n");
+    for(int i = 0; i < TAILLE_PL; i++)
+    {
+        for (int j = 0; j < TAILLE_PL; j++)
+        {
+            printf("%c", pl[i][j].type); // affichage du char de la case
+        }
+        printf("\n"); // saut à la ligne
+    }
+}
+
+void affichage_plateau_coordonnees(salle_t** pl){
+    // On parcourt le plateau case par case
+    printf("Affichage des coordonées des salles du plateau: [x,y] \n");
+    for(int i = 0; i < TAILLE_PL; i++)
+    {
+        for (int j = 0; j < TAILLE_PL; j++)
+        {
+            printf("[%d,%d]", pl[i][j].x, pl[i][j].y);
+        }
+        printf("\n"); // saut à la ligne
+    }
 }
 
 
