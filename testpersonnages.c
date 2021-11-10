@@ -13,5 +13,8 @@ int main()
 
   charger_perso(p);
 
+  print_pv_action(p[0].nb_action, p[0].pv);
+  print_pv_action(p[1].nb_action, p[1].pv);
+
   free(p);
 }

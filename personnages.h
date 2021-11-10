@@ -12,8 +12,10 @@
 
 typedef struct
 {
-  int x; //Coordonnée en abscisse du personnage
-  int y; //Coordonnée en ordonnée du personnage
+  int x; //Coordonnée en abscisse du personnage.
+  int y; //Coordonnée en ordonnée du personnage.
+  int nb_action; //Nombre d'action que le personnage possède.
+  int pv; //Point de vie du personnage.
 }Perso;
 
 /**
@@ -25,4 +27,7 @@ Perso* creer_perso();
 void charger_perso(Perso* p);
 
 void free_perso(Perso *p);
+
+void print_pv_action(int act, int pv);
+
 #endif

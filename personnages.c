@@ -15,6 +15,8 @@ Perso* creer_perso()
   {
     p[i].x = 0 + i*4;
     p[i].y = 0 + i*4;
+    p[i].nb_action = 1;
+    p[i].pv = 10;
   }
   return p;
 }
@@ -43,4 +45,10 @@ void charger_perso(Perso *p)
 void free_perso(Perso *p)
 {
   free(p);
+}
+
+void print_pv_action(int act, int pv)
+{
+  printf("Nombre d'action : %d/%d.\n",act,act);
+  printf("Nombre de point de vie : %d.\n",pv);
 }
