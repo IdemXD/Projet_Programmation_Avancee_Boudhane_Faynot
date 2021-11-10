@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "plateau.h"
+
+
+
+int is_in(int element,const char *tab, int tab_length)
+{
+    int trouve = 0;
+    int i = 0;
+    while (!trouve && (i < tab_length))
+    {
+        if (tab[i] == element)
+        {
+            trouve = 1; // l'element est dans le tableau
+        }
+        i++;
+    }
+    return trouve;
+}
+
+
+salle_t** creer_plateau(){
+    salle_t** tab = malloc(sizeof(salle_t*)*TAILLE_PL) ;
+    if (tab == NULL) exit(EXIT_FAILURE);
+    for(int i = 0; i < 5; i++)
+    {
+        tab[i] = malloc(sizeof(salle_t)*TAILLE_PL);
+    }
+    return tab;
+}
+
+
+
+
+
+salle_t** charger_plateau(char* niveau){
+     // Creation et allocation d'un plateau à deux dimensions
+     salle_t** pl = creer_plateau() ;
+
+     // Ouverture du fichier contenant une representation du plateau
+     FILE* plateau = NULL;
+     plateau = fopen(niveau,"r");
+
+     // Flag permettant de s'assurer qu'on ne prend en compte que des lettres reconnu par le jeu
+     int flag_char = 0 ;
+
+     // "buffer" permettant de stocké les chars representant une salle et ses caracts
+     char tampon[6] = "";
+
+     int salle_count = 0; // nb de chars parcouru dans le fichier
+
+     if (plateau == NULL) {
+         perror("Erreur ouverture du niveau") ;
+         flag_char = 1;
+     }
+     else {
+         while((fgets(tampon, 6, plateau) != NULL) && (!flag_char))
+         // Le fichier est lu jusqu'à ce qu'on arrive sur EOF, la fonction fgets reconnait \n et EOF
+         // ou jusqu'à ce que l'on rencontre une erreur dans la lecture
+         {
+             // Un des caractère lu ne respecte pas le format d'un plateau
+             // ou on a une ligne en trop dans le fichier
+             if(!chars_valide(tampon) || (salle_count >= 25))
+             {
+                 perror("Mauvais format de caractères et/ou de ligne");
+                 flag_char = 1;
+             } else {
+                 init_salles(tampon, pl, salle_count);
+                 salle_count += 1; // On prend en compte qu'on a avancé de char_count elements dans le fichier
+             }
+         }
+         fclose(plateau);
+    }
+
+    if(salle_count != 25) // Pas assez de salle dans le plateau
+    {
+        perror("Pas assez de caractères dans le fichier");
+        flag_char = 1;
+    }
+
+    // On vérifie l'existance et l'emplacement de la salle 25 et Centrale
+    if(verif_emplacements(pl)){
+     flag_char = 1;
+    } 
+
+    // On exit et free la mémoire si on rencontre une erreur dans le niveau
+    // sinon on renvoie le plateau
+    
+    if (flag_char){
+     exit (0);
+    } 
+    else{
+     return pl;
+    } 
+}
+
+
+void free_plateau(salle_t** pl){
+  for(int i = 0; i < TAILLE_PL; i++)
+  {
+    free(pl[i]); // Libère l'espace des sous tableaux
+  }
+  free(pl);
+  pl = NULL;
+}
