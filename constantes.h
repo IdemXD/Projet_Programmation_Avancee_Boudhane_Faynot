@@ -6,8 +6,6 @@
 	*\author Medi Boudhane
 */
 
-
-
 /**
  * \brief Le coté du plateau
 */
@@ -18,5 +16,14 @@
 */
 static const char LETTRES_SALLES[1] = {'X'} ;
 
+/**
+  *\brief Point de vie constant
+  */
+#define CONST_PV 10
+
+/**
+  *\brief Nombre d'action constant
+  */
+#define CONST_ACT 1
 
 #endif
