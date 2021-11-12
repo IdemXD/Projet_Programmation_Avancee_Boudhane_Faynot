@@ -40,7 +40,23 @@ salle_t** creer_plateau(){
     return tab;
 }
 
+int chars_valide(char paquet[6])
+{
+    // Si un des elements le respecte pas cette suite, on renvoie 0
+    if ((!is_in(paquet[0], LETTRES_SALLES, 17)) && (paquet[0] != '\n'))
+        return 0;
 
+    // Si un des trois, supposés boolean, ne sont pas sous le bon format, envoie 0
+    for(int i = 1; i < 4; i++)
+        if (!(paquet[i] == '1' || paquet[i] == '0'))
+            return 0;
+
+    // Les 2 derniers elements du buffer sont '\n' suivi de '\0'
+    if ((paquet[4] != '\n') || (paquet[5] != '\0'))
+        return 0;
+
+    return 1; // les elements s'enchainent correctement
+}
 
 char* preparation_chemin(){
     int no;
@@ -51,7 +67,7 @@ char* preparation_chemin(){
     niv = malloc(sizeof(char)*23);
 
     // fonction de concatenation du numero du niveau de du chemin
-    snprintf(niv, 23,"niveaux/plateau%i.txt", no);
+    snprintf(niv,23,"niveaux/plateau%i.txt", no);
 
     return niv;
 }
@@ -102,9 +118,9 @@ salle_t** charger_plateau(char* niveau){
     }
 
     // On vérifie l'existance et l'emplacement de la salle 25 et Centrale
-    if(verif_emplacements(pl)){
-     flag_char = 1;
-    } 
+    ///if(verif_emplacements(pl)){
+    /// flag_char = 1;
+    ///} 
 
     // On exit et free la mémoire si on rencontre une erreur dans le niveau
     // sinon on renvoie le plateau

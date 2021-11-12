@@ -7,13 +7,14 @@ EXEC = main
 SRC = 
 OBJ = $(SRC:.c=.o)
 
-SRCPL = testPlateau.c  plateau.c 
+
+SRCPL = plateau.c testplateau.c  
 TPL = $(SRCPL:.c=.o)
 
 
 
 all: $(EXEC)
-main: $(OBJ)
+main: $(TPL)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS) $(LDFLAGS)
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
