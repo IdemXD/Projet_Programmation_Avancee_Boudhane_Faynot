@@ -8,7 +8,7 @@
   #define ACTIONS_H
 
   #include "personnages.h"
-  #include "constante.h"
+  #include "constantes.h"
 
   /**
     *\brief Déplace le personnage
