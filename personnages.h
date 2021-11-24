@@ -7,7 +7,6 @@
 #ifndef PERSONNAGES_H
 #define PERSONNAGES_H
 
-#include "plateau.h"
 #include "constantes.h"
 #include "objet.h"
 
@@ -19,6 +18,7 @@ typedef struct
   int pv; //Point de vie du personnage.
   int attaque; //Point d'attaque de base du personnage.
   int defense; //Défense de base du personnage.
+  int etat; //
   Objet o; //Objet récupérer par le personnage.
 }Perso;
 

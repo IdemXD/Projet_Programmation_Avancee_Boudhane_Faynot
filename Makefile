@@ -11,7 +11,7 @@ OBJ = $(SRC:.c=.o)
 SRCPE = personnages.c actions.c objet.c testpersonnages.c
 TPE = $(SRCPE:.c=.o)
 
-SRCPL = plateau.c testplateau.c
+SRCPL = plateau.c salle.c testplateau.c 
 TPL = $(SRCPL:.c=.o)
 
 

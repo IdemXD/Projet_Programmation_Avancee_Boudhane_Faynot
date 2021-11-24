@@ -14,7 +14,7 @@
 /**
  * \brief Tableau des char de toutes les salles du jeu
 */
-static const char LETTRES_SALLES[1] = {'X'} ;
+static const char LETTRES_SALLES[5] = {'X','S','A','D','N'} ;
 
 /**
   *\brief Nombre d'action constant

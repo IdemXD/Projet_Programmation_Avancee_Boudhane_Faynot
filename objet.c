@@ -6,46 +6,39 @@
 
 #include "objet.h"
 
-Objet init_objet(Arme a)
-{
+Objet init_objet(Arme a){
   Objet o;
-  if(a == HACHE)
-  {
+  if(a == HACHE){
     o.a = HACHE;
     o.degat = 2;
     o.protection = 1;
     o.resistance = 3;
   }
-  else if(a == EPEE)
-  {
+  else if(a == EPEE){
     o.a = EPEE;
     o.degat = 2;
     o.protection = 2;
     o.resistance = 2;
   }
-  else if(a == LANCE)
-  {
+  else if(a == LANCE){
     o.a = LANCE;
     o.degat = 3;
     o.protection = 0;
     o.resistance = 2;
   }
-  else if(a == BOUCLIER)
-  {
+  else if(a == BOUCLIER){
     o.a = BOUCLIER;
     o.degat = 1;
     o.protection = 4;
     o.resistance = 4;
   }
-  else if(a == DAGUE)
-  {
+  else if(a == DAGUE){
     o.a = DAGUE;
     o.degat = 5;
     o.protection = 0;
     o.resistance = 1;
   }
-  else
-  {
+  else{
     o.a = RIEN;
     o.degat = 0;
     o.protection = 0;

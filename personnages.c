@@ -16,6 +16,7 @@ Perso* creer_perso()
     p[i].nb_action = CONST_ACT; //Initialise le nombre d'action des personnages.
     p[i].pv = 10; //Initialise les points de vie des personnages.
     p[i].attaque = 1;//Initialise l'attaque de base des personnages.
+    p[i].etat =1;
     p[i].defense = 1;//Initialise la défense de base des personnages.
     p[i].o = init_objet(RIEN);//Initialise l'Arme RIEN à chaque personnages.
   }
