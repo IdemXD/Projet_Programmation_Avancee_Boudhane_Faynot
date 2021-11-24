@@ -13,11 +13,9 @@ Perso* creer_perso()
   {
     p[i].x = 0 + i*4; //Initialise l'abscisse des personnages.
     p[i].y = 0 + i*4; //Initialise l'ordonnée des personnages.
-    p[i].nb_action = CONST_ACT; //Initialise le nombre d'action des personnages.
+    p[i].action = CONST_ACT; //Initialise l'action des personnages (1 action == 1 déplacement).
     p[i].pv = 10; //Initialise les points de vie des personnages.
-    p[i].attaque = 1;//Initialise l'attaque de base des personnages.
-    p[i].etat =1;
-    p[i].defense = 1;//Initialise la défense de base des personnages.
+    p[i].etat = 1; //Initialise l'état du personnage.
     p[i].o = init_objet(RIEN);//Initialise l'Arme RIEN à chaque personnages.
   }
   return p;
@@ -52,11 +50,8 @@ void free_perso(Perso *p)
 
 void print_stats(Perso *p, int i)
 {
-  printf("Nombre d'action : %d/%d.\n",p[i].nb_action, p[i].nb_action);
+  printf("Action du personnage : %d/%d.\n",p[i].action, p[i].action);
   printf("Nombre de point de vie : %d.\n",p[i].pv);
-  printf("\n");
-  printf("Nombre de point d'attaque : %d.\n",p[i].attaque);
-  printf("Nombre de point de défense : %d.\n",p[i].defense);
   printf("\n");
   print_objet(p[i].o);
   printf("\n");

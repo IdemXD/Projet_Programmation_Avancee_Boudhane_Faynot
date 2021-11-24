@@ -20,7 +20,7 @@
     Arme a; //Nom de l'arme.
     int degat; //Dégât de l'arme.
     int protection; //Protection donné par l'arme.
-    int resistance; //Nombre de fois où le joueur peut utiliser l'arme.
+    int poids; //Le poids d'une arme défini le tour de jeu.
   }Objet;
 
   /**

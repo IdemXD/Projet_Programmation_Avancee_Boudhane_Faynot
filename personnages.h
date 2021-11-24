@@ -14,11 +14,9 @@ typedef struct
 {
   int x; //Coordonnée en abscisse du personnage.
   int y; //Coordonnée en ordonnée du personnage.
-  int nb_action; //Nombre d'action que le personnage possède.
+  int action; ////Action des personnages (1 action == 1 déplacement).
   int pv; //Point de vie du personnage.
-  int attaque; //Point d'attaque de base du personnage.
-  int defense; //Défense de base du personnage.
-  int etat; //
+  int etat; //1 quand l'état du personnage est normal, 0 quand le personnage est empoisonné.
   Objet o; //Objet récupérer par le personnage.
 }Perso;
 
@@ -47,9 +45,15 @@ void free_perso(Perso *p);
 /**
   *\brief Affiche les points de vie ainsi que les actions d'un des personnages
   *\param p Le pointeur sur les personnages
-  *\param i Indice permettant de savoir quel personnage voit ses caractéristiques affihcer
+  *\param i Indice permettant de savoir quel personnage voit ses caractéristiques afficher (0 ou 1)
   */
 void print_stats(Perso *p, int i);
 
 
+/**
+  *\brief Regarde les points de vie du personnages et renvoie 1 si il est vivant et 0 si il est mort.
+  *\param p Le pointeur sur les personnages
+  *\param i Indice permettant de savoir quel personnage est peut-être mort. (0 ou 1)
+  */
+  int estMort(Perso *p, int i);
 #endif
