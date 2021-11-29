@@ -50,9 +50,13 @@ void free_perso(Perso *p)
 
 void print_stats(Perso *p, int i)
 {
-  printf("Action du personnage : %d/%d.\n",p[i].action, p[i].action);
+  printf("Action du joueur %d : %d/%d.\n",i + 1,p[i].action, p[i].action);
   printf("Nombre de point de vie : %d.\n",p[i].pv);
-  printf("\n");
   print_objet(p[i].o);
   printf("\n");
+}
+
+int estMort(Perso *p, int i)
+{
+  return p[i].pv <= 0 ;
 }

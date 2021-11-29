@@ -39,7 +39,7 @@ void action(Perso *p, int i);
 
 
 /**
-  *\brief Génère un nombre/chiffre aléatoire entre a et b inclues.
+  *\brief Génère un chiffre/nombre aléatoire entre a et b inclues.
  * \param a Valeur la plus basse qui peut être retournée.
  * \param b Valeur la plus haute qui peut être retournée.
   */
@@ -58,8 +58,9 @@ void attaque(Perso *p, int att, int def);
 /**
   *\brief Fais se combattre les personnages et défini qui attaque en premier
   *\param p Le pointeur sur les personnages
+  *\param fin Pointeur sur la variable de fin du jeu (1 le jeu continue, 0 le jeu se termine)
   */
-void combat(Perso *p);
+void combat(Perso *p, int *fin);
 
 
   #endif

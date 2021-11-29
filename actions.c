@@ -44,48 +44,70 @@ int randint(int a, int b)
 
 void attaque(Perso *p, int att, int def)
 {
-  int deg = p[def].o.protection - p[att].attaque + p[att].o.degat; //Cacul des dégâts infligés
+  int deg = p[def].o.protection - p[att].o.degat; //Cacul des dégâts infligés
+  if(deg > 0)
+  {
+    deg = 0;
+  }
+  printf("La vie du défenseur est maintenant à %d.\n",p[def].pv + deg);
   vie(p, def, deg);
 }
 
-void combat(Perso *p)
+void combat(Perso *p, int *fin)
 {
+  int r1 = 1, r2 = 0;
   if(p[0].o.poids == p[1].o.poids)
   {
-
-  }
-  else
-  {
-    if(p[0].o.poids > p[1].o.poids)
+    r1 = 0;
+    do
     {
-      attaque(p, 1, 0);
-      if(estMort(p, 0) == 0)
+      printf("Un jet aléatoire entre 0 et 100 va être effectué.\nLe premier jet sera pour le premier joueur.\n");
+      r1 = randint(0,100);
+      r2 = randint(0,100);
+      printf("Premier jet : %d.\nDeuxième jet : %d.",r1, r2);
+      if(r1 == r2)
       {
-
+        printf("Les deux jets étant égaux, on relance deux nouveaux jets.");
       }
-      else
-      {
-        attaque(p, 0, 1);
-        if(estMort(p, 1) == 0)
-        {
-
-        }
-      }
+    } while(r1 == r2);
+  }
+  if(p[0].o.poids > p[1].o.poids || r1 < r2)
+  {
+    printf("Le joueur 2 attaque en premier.\n");
+    attaque(p, 1, 0);
+    if(estMort(p, 0) == 1)
+    {
+      printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
+      *fin = 0;
     }
     else
     {
+      printf("Au tour du joueur 1 d'attaquer.\n");
       attaque(p, 0, 1);
-      if(estMort(p, 1) == 0)
+      if(estMort(p, 1) == 1)
       {
-
+        printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
+        *fin = 0;
       }
-      else
+    }
+  }
+  else
+  {
+    printf("Le joueur 1 attaque en premier.\n");
+    attaque(p, 0, 1);
+    if(estMort(p, 1) == 1)
+    {
+      printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
+      *fin = 0;
+    }
+    else
+    {
+      printf("Au tour du joueur 2 d'attaquer.\n");
+      attaque(p, 1, 0);
+      if(estMort(p, 0) == 1)
       {
-        attaque(p, 1, 0);
-        if(estMort(p, 0) == 0)
-        {
-
-        }
+        printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
+        *fin = 0;
       }
     }
   }

@@ -22,14 +22,14 @@ int main()
   printf("\n");
   deplacement(p, 1, -1 ,0);
 
-  printf("    Premier print des statistiques Premier perso :\n");
+  printf("    Premier print des statistiques Premier joueur :\n\n");
   print_stats(p, 0);
-  printf("    Premier print des statistiques Deuxième perso :\n");
+  printf("    Premier print des statistiques Deuxième joueur :\n\n");
   print_stats(p, 1);
   printf("\n");
 
   printf("    Changement de certaines statistiques.\n");
-  vie(p, 0, -5);
+  vie(p, 0, -10);
   vie(p, 1, 5);
   action(p, 0);
   action(p, 1);
@@ -37,11 +37,19 @@ int main()
   p[1].o = init_objet(DAGUE);
   printf("\n");
 
-  printf("    Deuxième print des statistiques Premier perso :\n");
+  printf("    Deuxième print des statistiques Premier joueur :\n\n");
+  printf("Mort du permier joueur : %d.\n",estMort(p,0));
   print_stats(p, 0);
-  printf("    Deuxième print des statistiques Deuxième perso :\n");
+  printf("    Deuxième print des statistiques Deuxième joueur :\n\n");
+  printf("Mort du deuxième joueur : %d.\n",estMort(p,1));
   print_stats(p, 1);
   printf("\n");
 
-  free(p);
+  printf("    Test de combat :\n\n");
+  int f = 1;
+  combat(p, &f);
+  printf("%d\n",f);
+
+
+  free_perso(p);
 }
