@@ -14,7 +14,7 @@ typedef struct
 {
   int x; //Coordonnée en abscisse du personnage.
   int y; //Coordonnée en ordonnée du personnage.
-  int action; ////Action des personnages (1 action == 1 déplacement).
+  int mouv; //Mouvement des personnages.
   int pv; //Point de vie du personnage.
   int etat; //1 quand l'état du personnage est normal, 0 quand le personnage est empoisonné.
   Objet o; //Objet récupérer par le personnage.

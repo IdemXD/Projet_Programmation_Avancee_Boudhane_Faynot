@@ -8,15 +8,15 @@
 
 void deplacement(Perso *p, int i, int x, int y)
 {
-  if(p[i].action != 0)
+  if(p[i].mouv != 0)
   {
-    p[i].x += x;
-    p[i].y += y;
-    p[i].action--;
+    p[i].x += x;  //Déplace sur l'axe x/l'abscisse le personnage.
+    p[i].y += y;  //Déplace sur l'axe y/l'ordonnée le personnage.
+    p[i].mouv--;  //Retire le point de mouvement lors du déplacement.
   }
   else
   {
-    printf("Vous ne pouvez pas vous deplacer, vous n'avez plus d'action.\n");
+    printf("Vous ne pouvez pas vous deplacer, vous n'avez plus de point de mouvement.\n");
   }
 }
 
@@ -25,9 +25,9 @@ void vie(Perso *p, int i, int v)
   p[i].pv += v;
 }
 
-void action(Perso *p, int i)
+void mouvement(Perso *p, int i)
 {
-  p[i].action = CONST_ACT;
+  p[i].mouv = CONST_MOUV;
 }
 
 int randint(int a, int b)
@@ -55,43 +55,23 @@ void attaque(Perso *p, int att, int def)
 
 void combat(Perso *p, int *fin)
 {
-  int r1 = 1, r2 = 0;
+  srand(time(NULL));  //Pour le randint de combat
+  int r1 = 0, r2 = 0; //Initialise deux variables pour le randint à 0 pour rentrer dans la boucle.
   if(p[0].o.poids == p[1].o.poids)
   {
-    r1 = 0;
     do
     {
-      printf("Un jet aléatoire entre 0 et 100 va être effectué.\nLe premier jet sera pour le premier joueur.\n");
-      r1 = randint(0,100);
-      r2 = randint(0,100);
-      printf("Premier jet : %d.\nDeuxième jet : %d.",r1, r2);
-      if(r1 == r2)
+      printf("Un jet aléatoire entre 0 et 49 va être effectué.\nLe premier jet sera pour le joueur 1.\n\n");
+      r1 = randint(0,49);  //Premier jet aléatoire.
+      r2 = randint(0,49);  //Deuxième jet aléatoire.
+      printf("Premier jet : %d.\nDeuxième jet : %d.\n\n",r1, r2);
+      if(r1 == r2)  //Si ils sont égaux, on recommence.
       {
-        printf("Les deux jets étant égaux, on relance deux nouveaux jets.");
+        printf("Les deux jets étant égaux, on relance deux nouveaux jets.\n");
       }
-    } while(r1 == r2);
+    } while(r1 == r2);  //La boucle s'arrête lorsque le tour d'un joueur est "décidé".
   }
-  if(p[0].o.poids > p[1].o.poids || r1 < r2)
-  {
-    printf("Le joueur 2 attaque en premier.\n");
-    attaque(p, 1, 0);
-    if(estMort(p, 0) == 1)
-    {
-      printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
-      *fin = 0;
-    }
-    else
-    {
-      printf("Au tour du joueur 1 d'attaquer.\n");
-      attaque(p, 0, 1);
-      if(estMort(p, 1) == 1)
-      {
-        printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
-        *fin = 0;
-      }
-    }
-  }
-  else
+  if(p[0].o.poids < p[1].o.poids || r1 > r2)  //On rentre dans la condition si c'est le tour du joueur 1
   {
     printf("Le joueur 1 attaque en premier.\n");
     attaque(p, 0, 1);
@@ -100,13 +80,33 @@ void combat(Perso *p, int *fin)
       printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
       *fin = 0;
     }
-    else
+    else  //Le joueur 1 n'a pas tué le joueur 2.
     {
       printf("Au tour du joueur 2 d'attaquer.\n");
       attaque(p, 1, 0);
       if(estMort(p, 0) == 1)
       {
         printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
+        *fin = 0;
+      }
+    }
+  }
+  else  //On rentre dans la condition si c'est le tour du joueur 2.
+  {
+    printf("Le joueur 2 attaque en premier.\n");
+    attaque(p, 1, 0);
+    if(estMort(p, 0) == 1)
+    {
+      printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
+      *fin = 0;
+    }
+    else  //Le joueur 2 n'a pas tué le joueur 1.
+    {
+      printf("Au tour du joueur 1 d'attaquer.\n");
+      attaque(p, 0, 1);
+      if(estMort(p, 1) == 1)
+      {
+        printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
         *fin = 0;
       }
     }

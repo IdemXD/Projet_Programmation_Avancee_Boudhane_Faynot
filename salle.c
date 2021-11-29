@@ -40,13 +40,15 @@ void modif_visible_et_etat(salle_t** plateau,int x, int y){
 void salle_soin(Perso* perso,int tour_perso){
     perso[tour_perso].etat=1;
     perso->pv=+10;
-    
-    
+
+
 }
 
-void Salle_virus(Perso* perso,int tour_perso){
+void salle_poison(Perso* perso,int tour_perso){
     perso[tour_perso].etat=0;
     perso->pv--;
 }
 
-void Salle_Arme(Perso*,Arme )
+void Salle_Arme(Perso* p,Arme a){
+
+}

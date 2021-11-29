@@ -9,7 +9,7 @@
 
   #include "personnages.h"
   #include "constantes.h"
-  #include <time.h>
+  #include <time.h> //Pour le srand(time(NULL)) dans le main.
 
   /**
     *\brief Déplace le personnage
@@ -31,11 +31,11 @@ void vie(Perso *p, int i, int v);
 
 
 /**
-  *\brief Remet à zéro le nombre actions du personnage
+  *\brief Remet à un le nombre de mouvement du personnage
   *\param p Le pointeur sur les personnages
-  *\param i Indice permettant de savoir quel personnage voit son point d'action réinitialiser (0 ou 1)
+  *\param i Indice permettant de savoir quel personnage voit son point de mouvement réinitialiser (0 ou 1)
   */
-void action(Perso *p, int i);
+void mouvement(Perso *p, int i);
 
 
 /**

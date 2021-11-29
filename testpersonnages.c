@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <stdio.h>
-#include <stdlib.h>
 #include "personnages.h"
 #include "actions.h"
 
+
 int main()
 {
+
   Perso *p = creer_perso();
   printf("%d, %d\n",p[0].x, p[0].y);
   printf("%d, %d\n",p[1].x, p[1].y);
@@ -29,10 +28,10 @@ int main()
   printf("\n");
 
   printf("    Changement de certaines statistiques.\n");
-  vie(p, 0, -10);
+  vie(p, 0, -4);
   vie(p, 1, 5);
-  action(p, 0);
-  action(p, 1);
+  mouvement(p, 0);
+  mouvement(p, 1);
   p[0].o = init_objet(HACHE);
   p[1].o = init_objet(DAGUE);
   printf("\n");
@@ -45,10 +44,21 @@ int main()
   print_stats(p, 1);
   printf("\n");
 
-  printf("    Test de combat :\n\n");
+  printf("    Test de combat 1 :\n\n");
   int f = 1;
   combat(p, &f);
-  printf("%d\n",f);
+  printf("\nFin == %d\n",f);
+
+  printf("    Changement de certaines statistiques.\n");
+  vie(p, 0, 4);
+  vie(p, 1, -8);
+  p[0].o = init_objet(DAGUE);
+  printf("\n");
+
+  printf("    Test de combat 2 :\n\n");
+  printf("La vie des deux joueur vient d'être initalisée à 5.\n\n");
+  combat(p, &f);
+  printf("\nFin == %d\n",f);
 
 
   free_perso(p);
