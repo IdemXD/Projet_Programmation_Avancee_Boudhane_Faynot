@@ -11,8 +11,6 @@
 struct textures_s{
 
 	SDL_Texture * fond;/*!<Texture du fond de l'écran */
-	SDL_Texture * sprites_salles;/*!<Textures des salles */
-	SDL_Texture * sprites_elements;/*!<Textures des éléments du jeu*/
 };
 
 typedef struct textures_s ressources;
