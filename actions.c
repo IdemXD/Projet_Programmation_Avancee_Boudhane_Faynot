@@ -61,9 +61,9 @@ void combat(Perso *p, int *fin)
   {
     do
     {
-      printf("Un jet aléatoire entre 0 et 49 va être effectué.\nLe premier jet sera pour le joueur 1.\n\n");
-      r1 = randint(0,49);  //Premier jet aléatoire.
-      r2 = randint(0,49);  //Deuxième jet aléatoire.
+      printf("Un jet aléatoire entre 1 et 50 va être effectué.\nLe premier jet sera pour le joueur 1.\n\n");
+      r1 = randint(1,50);  //Premier jet aléatoire.
+      r2 = randint(1,50);  //Deuxième jet aléatoire.
       printf("Premier jet : %d.\nDeuxième jet : %d.\n\n",r1, r2);
       if(r1 == r2)  //Si ils sont égaux, on recommence.
       {

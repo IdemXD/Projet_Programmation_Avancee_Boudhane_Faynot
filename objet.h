@@ -39,7 +39,15 @@
 
   /**
     *\brief Affiche les statistiques d'un objet
-    *\param o Objet dont l'on souhaite connaîtreles statistiques
+    *\param o Objet dont l'on souhaite connaître les statistiques
     */
   void print_objet(Objet o);
+
+  /**
+    *\brief Améliore une caractéristique de l'objet
+    *\param o Objet que l'on veut améliorer.
+    *\param chx Paramètre définissant la caractéristique choisie.
+    *\return L'objet amélioré est retourné
+    */
+  Objet set_objet(Objet o, int chx);
   #endif

@@ -92,7 +92,26 @@ void print_objet(Objet o)
   {
     printf("Le nom de l'arme tenu est : %s.\n", nom_objet(o));
   }
-  printf("L'arme donne %d de dégât en plus.\n",o.degat);
-  printf("L'arme donne %d de protection en plus.\n",o.protection);
+  printf("L'arme fait  %d de dégât.\n",o.degat);
+  printf("L'arme donne %d de protection.\n",o.protection);
   printf("L'arme possède un poids de : %d.\n",o.poids);
+}
+
+Objet set_objet(Objet o, int chx)
+{
+  if(chx == 1)
+  {
+    o.degat += 1;
+    return o;
+  }
+  if(chx == 2)
+  {
+    o.protection += 1;
+    return o;
+  }
+  if(chx == 3)
+  {
+    o.poids -= 1;
+    return o;
+  }
 }
