@@ -1,13 +1,25 @@
-/*
-    *\file plateau.c
-    *\author Boudhane Medi
-*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "plateau.h"
 
+
+int is_in(char element,const char *tab, int tab_length)
+{
+    int trouve = 0;
+    int i = 0;
+    while (!trouve && (i < tab_length))
+    {
+        if (tab[i] == element)
+        {
+            trouve = 1; // l'element est dans le tableau
+        }
+        i++;
+    }
+    return trouve;
+}
 
 void init_salles(char salle[5], salle_t** pl, int n)
 {
@@ -36,7 +48,6 @@ char* preparation_chemin()
 
     return niv;
 }
-
 char * nom_du_plateau(int plateau){
 
     char* niv; // Taille: nb de char + '\0' de fin de chaine de charactère
@@ -51,7 +62,7 @@ char * nom_du_plateau(int plateau){
 int chars_valide(char paquet[6])
 {
     // Si un des elements le respecte pas cette suite, on renvoie 0
-    if ((!is_in(paquet[0], LETTRES_SALLES, 5)) && (paquet[0] != '\n'))
+    if ((!is_in(paquet[0], LETTRES_SALLES, 6)) && (paquet[0] != '\n'))
         return 0;
 
     // Si un des trois, supposés boolean, ne sont pas sous le bon format, envoie 0
@@ -105,17 +116,17 @@ salle_t** charger_plateau(char* niveau)
          {
              // Un des caractère lu ne respecte pas le format d'un plateau
              // ou on a une ligne en trop dans le fichier
-             if(!chars_valide(tampon) || (salle_count >= 25))
+            /* if(!chars_valide(tampon) || (salle_count >= 25))
              {
                  perror("Mauvais format de caractères et/ou de ligne");
                  flag_char = 1;
-             } else {
+             } else { */
                  init_salles(tampon, pl, salle_count);
                  salle_count += 1; // On prend en compte qu'on a avancé de char_count elements dans le fichier
-             }
+             
          }
-         fclose(plateau);
     }
+    fclose(plateau);
 
     if(salle_count != 25) // Pas assez de salle dans le plateau
     {
@@ -123,8 +134,6 @@ salle_t** charger_plateau(char* niveau)
         flag_char = 1;
     }
 
-    // On vérifie l'existance et l'emplacement de la salle 25 et Centrale
-    if(verif_emplacements(pl)) flag_char = 1;
 
     // On exit et free la mémoire si on rencontre une erreur dans le niveau
     // sinon on renvoie le plateau

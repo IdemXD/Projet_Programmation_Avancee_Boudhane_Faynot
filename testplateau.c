@@ -20,7 +20,8 @@ int main(int argc, char *argv[]){
 	printf("\n  Visibilité/Utilisabilité/Présence : \n");
 	affichage_plateau_caracteristique(pl);
 	printf("\n");
-	//Test avec une salle normale
+	
+    charger_perso(Perso)
 
 
 

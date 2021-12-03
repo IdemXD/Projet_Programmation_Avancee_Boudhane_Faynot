@@ -72,7 +72,7 @@ SDL_Texture * charger_image_transparente(const char* nomfichier,SDL_Renderer* re
 
 void init_textures(ressources * textures,SDL_Renderer* renderer){
 
-	textures->fond = charger_image("ressources/background.bmp", renderer );
+	textures->fond = charger_image("Ressources/background.bmp", renderer );
 
 }
 
