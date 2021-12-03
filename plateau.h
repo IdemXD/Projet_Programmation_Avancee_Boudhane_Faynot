@@ -11,7 +11,6 @@
 #include "constantes.h"
 
 
-int is_in(int element,const char *tab, int tab_length);
 
 void init_salles(char salle[5], salle_t** pl, int n);
 
@@ -25,10 +24,6 @@ salle_t** creer_plateau();
 
 
 salle_t** charger_plateau(char* niveau);
-
-void proposition_sauvegarde(salle_t** pl);
-
-void sauvegarder_plateau(salle_t** pl, char* niveau);
 
 
 void free_plateau(salle_t** pl);
