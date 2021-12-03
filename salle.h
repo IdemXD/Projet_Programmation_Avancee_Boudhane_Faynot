@@ -25,11 +25,14 @@ struct salle_s{
 };
 typedef struct salle_s salle_t;
 
-void Salle_arme(Perso* p,Arme a);
 
-void salle_soin(Perso* perso,int tour_perso);
+void salle_arme(Arme a,Perso* joueur);
+
+void salle_soin(salle_t** pl,Perso* perso,int tour_perso,int x,int y);
 
 void salle_poison(Perso* perso,int tour_perso);
+
+
 
 
 #endif
