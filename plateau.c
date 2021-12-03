@@ -51,7 +51,7 @@ char * nom_du_plateau(int plateau){
 int chars_valide(char paquet[6])
 {
     // Si un des elements le respecte pas cette suite, on renvoie 0
-    if ((!is_in(paquet[0], LETTRES_SALLES, 17)) && (paquet[0] != '\n'))
+    if ((!is_in(paquet[0], LETTRES_SALLES, 5)) && (paquet[0] != '\n'))
         return 0;
 
     // Si un des trois, supposés boolean, ne sont pas sous le bon format, envoie 0
