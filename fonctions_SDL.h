@@ -11,6 +11,7 @@
 struct textures_s{
 
 	SDL_Texture * fond;/*!<Texture du fond de l'écran */
+	SDL_Texture * sprites_salles;/*!<Textures des salles */
 };
 
 typedef struct textures_s ressources;
@@ -40,6 +41,14 @@ void liberer_textures(ressources * textures);
 */
 void liberer_texture(SDL_Texture * texture);
 
+/**
+	* \brief Indique à quel personnage c'est le tour de jouer et son action
+	* \param renderer Surface de l'écran de jeu
+	* \param font Police d'écriture du jeu
+	* \param tour_perso Indique le personnage qui doit joueur
+	* \param tour_action Indique le numero de l'action du joueur
+*/
+void affiche_tours(SDL_Renderer* renderer,TTF_Font *font, int tour_perso, int tour_action, char action);
 
 /**
 	* \brief Crée une texture à partir d'une image
@@ -60,15 +69,28 @@ SDL_Texture* charger_image (const char* nomfichier, SDL_Renderer*renderer);
 */
 SDL_Texture * charger_image_transparente(const char* nomfichier,SDL_Renderer* renderer,Uint8 r, Uint8 g, Uint8 b) ;
 
+/**
+	* \brief Crée une texture à partir d'un fichier de police
+	* \param message message à afficher
+	* \param renderer Surface de l'écran de jeu
+	* \param font Police d'écriture
+	* \param couleur couleur du message affiché
+	* \return la texture
+*/
+void affiche_message (SDL_Renderer* renderer,TTF_Font *police,const char *message);
+
 
 /**
-	* \brief Affiche le sprite d'un personnage
+	* \brief Permet d'afficher un texte à des coordonées données
 	* \param renderer Surface de l'écran de jeu
-	* \param perso Sprite du personnage
-	* \param donnees_perso Informations sur le personnage
-	* \param i numéro du personnage
+	* \param x Abscisse du coin en haut a gauche du rectangle d'affichage
+	* \param y Ordonnées du coin en haut a gauche du rectangle d'affichage
+	* \param w Abscisse du coin en bas a droite du rectangle d'affichage
+	* \param h Ordonnées du coin en bas a droite du rectangle d'affichage
+	* \param text Message que l'on souhaite afficher
+	* \param font Police d'écriture
 */
-void affiche_joueur(SDL_Renderer* renderer,SDL_Texture * perso,Perso donnees_perso,int i);
+void appliquer_texte(SDL_Renderer *renderer,int x, int y, int w, int h, const char *text, TTF_Font *font);
 
 /**
 	* \brief Affiche l'image correspondante à une salle
@@ -94,4 +116,23 @@ int * texture_salle (salle_t salle);
 */
 void affichage_plateau(SDL_Renderer* renderer, ressources texture_salles, salle_t** pl);
 
+/**
+    * \brief Affiche le plateau sur l'ecran de jeu
+    * \param peut_afficher Permet de savoir si l'on peut afficher
+    * \param num_action Numero de l'action à executer
+    * \param ecran Surface de l'écran de joueur
+	* \param font Police d'écriture
+	* \param salles Plateau de jeu
+*/
+void affiche_message_actions(int peut_afficher,int num_action,SDL_Renderer* ecran,TTF_Font* police, salle_t** salles);
+
+/**
+	* \brief Affiche le texte correcpondant à la salle
+	* \param renderer Surface de l'écran de joueur
+	* \param font Police d'écriture
+	* \param salle Salle dont on veut la description
+*/
+void affiche_texte_salle(SDL_Renderer* renderer, TTF_Font *police, salle_t salle);
+
+int clic_menu(SDL_Rect mot,int x_souris, int y_souris);
 #endif
