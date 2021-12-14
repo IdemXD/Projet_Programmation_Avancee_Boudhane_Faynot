@@ -24,6 +24,7 @@ Perso* creer_perso()
 
 void charger_perso(Perso *p)
 {
+
   int i = 0;
   for(int j = 0;j < TAILLE_PL;j++) //Parcours l'abscisse.
   {
@@ -33,10 +34,6 @@ void charger_perso(Perso *p)
       {
         printf("P");
         i++; //Change de personnage.
-      }
-      else
-      {
-        printf("0");
       }
     }
     printf("\n");
