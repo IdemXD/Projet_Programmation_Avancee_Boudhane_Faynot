@@ -61,6 +61,7 @@ void clean_game(SDL_Window *fenetre, SDL_Renderer *ecran, ressources *textures, 
     * \param plateau Ensemble des salles
 */
 
+
 void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau);
 
 data_t* gestion_plateau(int num_plateau);
