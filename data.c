@@ -53,9 +53,6 @@ void refresh_game(SDL_Renderer *ecran, ressources textures, data_t* data)
 
 void clean_game(SDL_Window *fenetre, SDL_Renderer *ecran, ressources *textures, data_t* data)
 {
-    if (data != NULL ){
-        //free(data->actions);
-    }
     if (data != NULL && data->salles != NULL){
         free_plateau(data->salles);
     }
@@ -160,10 +157,6 @@ void appliquer_texte_menu(int numero_menu,SDL_Renderer* ecran,SDL_Rect** rectMes
         appliquer_texte(ecran,rectMessages[numero_menu-1][0].x, rectMessages[numero_menu-1][0].y, rectMessages[numero_menu-1][0].w, rectMessages[numero_menu-1][0].h, "Plateau 1", textures.police);
 
     }
-    if(numero_menu==3){
-        appliquer_texte(ecran,325, 145, 295, 50, "Mode de jeu", textures.police);
-        appliquer_texte(ecran,rectMessages[numero_menu-1][0].x, rectMessages[numero_menu-1][0].y, rectMessages[numero_menu-1][0].w, rectMessages[numero_menu-1][0].h, "1 Joueur", textures.police);
-    }
 }
 
 void choix_du_menu(int choix,int* rester_dans_menu, int* numero_menu){
@@ -192,22 +185,17 @@ void trouve_selection_menu(int x_souris,int y_souris, int* rester_dans_menu,int*
 	SDL_Rect* rect = recherche_rect_messages(*numero_menu,&nb_choix,rectMessages);
 	while (!trouve && choix<nb_choix){
 		if (clic_menu(rect[choix],x_souris, y_souris)){//Si le joueur a cliqué sur un choix du menu
-			if (*numero_menu == 3){ //Si le joueur est dans le menu 3
-				if (!choix){ //Si il choisit le premier choix (1 joueur), il joue en mode solo
-                	(*data)->type_de_jeu = 's';
-                } else {
-                	(*data)->type_de_jeu = 'm';
-                }
+                
+			
+			if (*numero_menu == 2){//Si le joueur est dans le menu 2 (choix du plateau)
+				*data = gestion_plateau(choix + 1);
+                *numero_menu = *numero_menu + 1;
                 (*data)->nb_personnages = 2;
 
 				(*data)->joueur = creer_perso((*data)->nb_personnages);
 
                 *jouer = 1;//On sort du menu et on peut jouer
         		*rester_dans_menu = 1;
-			}
-			if (*numero_menu == 2){//Si le joueur est dans le menu 2 (choix du plateau)
-				*data = gestion_plateau(choix + 1);
-                *numero_menu = *numero_menu + 1;
 			}
 			if (*numero_menu == 1){//Si le joueur est dans le menu 1 (jouer/quitter)
 				choix_du_menu(choix, rester_dans_menu, numero_menu);
