@@ -9,6 +9,7 @@
 
   #include "personnages.h"
   #include "constantes.h"
+  #include "salle.h"
   #include <time.h> //Pour le srand(time(NULL)) dans le main.
 
   /**
@@ -18,7 +19,7 @@
     *\param x Déplacement sur l'abscisse
     *\param y Déplacement sur l'ordonnée
     */
-void deplacement(Perso *p, int i, int x, int y);
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x, int y);
 
 
 /**

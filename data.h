@@ -17,8 +17,6 @@ struct data_s {
     int etape;              /*!< Indique à quel étape du jeu on se trouve */
     int trouve;             /*!< Indique qu'on a trouvé la salle 25 */
     int tour_perso;         /*!< Indique à quel joueur c'est le tour */
-    int tour_action;        /*!< Indique ordre d'execution des actions  */
-    int nb_action;          /*!< Donne le nb d'action accordé au joueur */
     char active_direction;  /*!< Définit quel direction le joueur choisit */
     int active_direction_salle ;
     int move;

@@ -5,20 +5,39 @@
   */
 
 #include "actions.h"
+#include "salle.h"
 
-void deplacement(Perso *p, int i, int x, int y)
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x, int y)
 {
   if(p[i].mouv != 0)
   {
-    p[i].x += x;  //Déplace sur l'axe x/l'abscisse le personnage.
-    p[i].y += y;  //Déplace sur l'axe y/l'ordonnée le personnage.
-    p[i].mouv--;  //Retire le point de mouvement lors du déplacement.
-  }
+
+		//Cas où le joueur choisit droite
+	if(p->x+1 < TAILLE_PL && *direction == 'd'){
+		p->x = p->x + 1 ;
+	}
+	//Cas où le joueur choisit gauche
+	else if(p->x-1 >= 0 && *direction == 'g'){
+		p->x = p->x - 1 ;
+	}
+	//Cas où le joueur choisit bas
+	else if (p->y+1 < TAILLE_PL && *direction == 'b'){
+		p->y = p->y + 1 ;
+	}
+	//Cas où le joueur choisit haut
+	else if (p->y-1 >= 0 && *direction == 'h'){
+		p->y = p->y - 1 ;
+	}
+ }
   else
   {
     printf("Vous ne pouvez pas vous deplacer, vous n'avez plus de point de mouvement.\n");
   }
+	modif_visible_et_etat(plateau,p->x,p->y);
+  action_salle(plateau,p,i);
+
 }
+ 
 
 
 void vie(Perso *p, int i, int v)

@@ -16,8 +16,7 @@ data_t * init_data()
     data->move=0;
     data->trouve = 0;
     data->terminer = 0;
-    data->nb_action = 0;
-	data->tour_perso = data->tour_action = 0;
+	data->tour_perso = 0;
 	data->joueur = NULL;
 	return data;
 
