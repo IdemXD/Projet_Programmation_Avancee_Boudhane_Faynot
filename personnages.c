@@ -15,6 +15,7 @@ Perso* creer_perso()
     p[i].y = 0 + i*4; //Initialise l'ordonnée des personnages.
     p[i].mouv = CONST_MOUV; //Initialise l'action des personnages (1 action == 1 déplacement).
     p[i].pv = 10; //Initialise les points de vie des personnages.
+    p[i].state = 1 ; //les personnages sont vivants
     p[i].etat = 1; //Initialise l'état du personnage.
     p[i].o = init_objet(RIEN);//Initialise l'Arme RIEN à chaque personnages.
   }
@@ -46,6 +47,14 @@ void charger_perso(Perso *p)
 void free_perso(Perso *p)
 {
   free(p);
+}
+
+int joueurToPersos (int nbJoueurs){
+    if (nbJoueurs == 1){//Si il n'y a qu'un joueur, il a le droit a deux personnages
+        return 2;
+    }
+    //Sinon un personnage par joueur
+    return nbJoueurs;
 }
 
 void print_stats(Perso *p, int i)

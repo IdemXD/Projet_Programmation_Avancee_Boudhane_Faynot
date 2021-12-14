@@ -17,6 +17,7 @@ typedef struct
   int mouv; //Mouvement des personnages.
   int pv; //Point de vie du personnage.
   int etat; //1 quand l'état du personnage est normal, 0 quand le personnage est empoisonné.
+  int state;
   Objet o; //Objet récupérer par le personnage.
 }Perso;
 

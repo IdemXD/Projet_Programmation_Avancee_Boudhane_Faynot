@@ -12,6 +12,9 @@ struct textures_s{
 
 	SDL_Texture * fond;/*!<Texture du fond de l'écran */
 	SDL_Texture * sprites_salles;/*!<Textures des salles */
+	SDL_Texture * sprites_menu;/*!<Texture du menu  */
+	SDL_Texture * sprites_elements;/*!<Textures des éléments du jeu*/
+	TTF_Font* police; /*!<TPolice de texte*/
 };
 
 typedef struct textures_s ressources;
@@ -91,6 +94,31 @@ void affiche_message (SDL_Renderer* renderer,TTF_Font *police,const char *messag
 	* \param font Police d'écriture
 */
 void appliquer_texte(SDL_Renderer *renderer,int x, int y, int w, int h, const char *text, TTF_Font *font);
+
+/**
+	* \brief Initialise la hauteur et largeur d'une action à partir de son sprite
+	* \param action Sprite d'une action
+	* \param donnees_action Les informations sur une action
+*/
+//void modif_taille(SDL_Texture * action,action_t* donnees_action);
+
+/**
+	* \brief Permet d'afficher une action à partir de ses coordonées
+	* \param renderer Surface de l'écran de jeu
+	* \param action Sprite d'une action
+	* \param donnees_action Informations sur une action
+	* \param numA numéro de l'action
+*/
+//void affiche_action(SDL_Renderer* renderer,SDL_Texture * action,action_t donnees_action ,int numA);
+
+/**
+	* \brief Affiche le sprite d'un personnage
+	* \param renderer Surface de l'écran de jeu
+	* \param perso Sprite du personnage
+	* \param donnees_perso Informations sur le personnage
+	* \param i numéro du personnage
+*/
+void affiche_joueur(SDL_Renderer* renderer,SDL_Texture * perso,Perso donnees_perso,int i);
 
 /**
 	* \brief Affiche l'image correspondante à une salle

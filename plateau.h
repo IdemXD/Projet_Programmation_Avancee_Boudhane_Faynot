@@ -31,6 +31,7 @@ void free_plateau(salle_t** pl);
 
 void affichage_plateau_lettre(salle_t** pl);
 
+char * nom_du_plateau(int plateau);
 
 void affichage_plateau_coordonnees(salle_t** pl);
 

@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "salle.h"
+#include "pile.h"
 
 
 
@@ -11,6 +12,9 @@ void action_salle(salle_t**  pl,Perso* joueur,int tour_perso){
     int x=joueur->x;
     int y=joueur->y;
     char type;
+    int a,b;
+    Pile* pile =initialiser();
+    creer_pile(pile);
         switch (pl[y][x].type) {
             case 'S':
               salle_soin(pl,joueur,tour_perso,x,y);
@@ -19,18 +23,22 @@ void action_salle(salle_t**  pl,Perso* joueur,int tour_perso){
                 salle_poison(joueur,tour_perso);
             break;
             case 'E':
-           //     salle_arme(EPEE,joueur);
+               salle_arme(EPEE,joueur);
             break;
             case 'H':
-           //     salle_arme(HACHE,joueur);
+               salle_arme(HACHE,joueur);
             break;
             case 'D':
-        //        salle_arme(DAGUE,joueur);
+               salle_arme(DAGUE,joueur);
             break;
             case 'L':
-            //    salle_arme(LANCE,joueur);
+                salle_arme(LANCE,joueur);
             case 'B':
-             //   salle_arme(BOUCLIER,joueur);
+                salle_arme(BOUCLIER,joueur);
+            break;
+            case 'Z':
+                type=depiler(pile);
+                Salle_surprise(pl,joueur,type,tour_perso,a,b);
             break;
 
                 
@@ -88,4 +96,22 @@ void salle_poison(Perso* perso,int tour_perso){
 
 void salle_arme(Arme a,Perso* joueur){
     joueur->o=init_objet(a);
+}
+
+void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int tour_perso ,char salle, int* a , int* b) {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+
+            if (pl[i][j].type == salle && persos->x == pl[i][j].x &&
+                persos->y == pl[i][j].y) {
+                *a = i;
+                *b = j;
+            }
+        }
+    }
+}
+
+void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int tour_perso,int a,int b){
+    Cherche_salle_specifique(pl,persos,tour_perso,'Z',&a,&b);
+    pl[a][b].type=salle_Depile;
 }

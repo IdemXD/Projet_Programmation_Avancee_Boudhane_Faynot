@@ -20,6 +20,7 @@ void deplacement(Perso *p, int i, int x, int y)
   }
 }
 
+
 void vie(Perso *p, int i, int v)
 {
   p[i].pv += v;

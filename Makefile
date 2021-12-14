@@ -4,8 +4,8 @@ LIBS = -L./SDL2_ttf/.libs  -L./SDL2_image/.libs
 LDFLAGS = `sdl2-config --cflags --libs` -lSDL2_ttf -lSDL2_image -lm
 INCLUDES =  -I./SDL2_ttf  -I./SDL2_image
 EXEC = main
-INC = constantes.h personnages.h actions.h objet.h plateau.h salle.h
-SRC = main.c personnages.c actions.c objet.c salle.c 
+INC = constantes.h plateau.h pile.h fonctions_SDL.h data.h personnages.h actions.h objet.h plateau.h salle.h
+SRC = main.c fonctions_SDL.c pile.c plateau.c data.c personnages.c actions.c objet.c salle.c 
 OBJ = $(SRC:.c=.o)
 
 SRCPE = personnages.c actions.c objet.c testpersonnages.c

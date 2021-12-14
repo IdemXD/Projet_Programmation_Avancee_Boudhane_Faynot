@@ -33,6 +33,9 @@ void salle_soin(salle_t** pl,Perso* perso,int tour_perso,int x,int y);
 void salle_poison(Perso* perso,int tour_perso);
 
 
+void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int tour_perso ,char salle, int* a , int* b);
 
+
+void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int tour_perso,int a,int b);
 
 #endif
