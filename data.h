@@ -12,7 +12,6 @@
 
 struct data_s {
 
-    int nb_personnages; /*!< Nombre de personnages (2 pour 1 joueur sinon le nombre de joueurs est égal au nombre de personnages) */
     int terminer;           /*!< Indique que la partie est terminée */
     int etape;              /*!< Indique à quel étape du jeu on se trouve */
     int trouve;             /*!< Indique qu'on a trouvé la salle 25 */
@@ -21,7 +20,6 @@ struct data_s {
     int active_direction_salle ;
     int move;
     int affiche_message; /*!< Indique si on doit afficher un message à l'écran */
-    char type_de_jeu;  /*!< Indique le type de jeu que le joueur choisit (s pour solo et m pour multijoueur)*/
     salle_t** salles;       /*!< Represente le plateau de jeu */
     Perso* joueur;        /*!< Represente les joueurs */
 };
@@ -61,11 +59,9 @@ void clean_game(SDL_Window *fenetre, SDL_Renderer *ecran, ressources *textures, 
     * \param terminer Indique la fin du jeu
     * \param joueurs Ensemble des joueurs
     * \param plateau Ensemble des salles
-    * \param type_de_jeu Type de jeu (solo ou multi)
-    * \param nb_personnage Nombre de personnages total
 */
 
-void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau,char type_de_jeu,int nb_personnage);
+void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau);
 
 data_t* gestion_plateau(int num_plateau);
 

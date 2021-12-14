@@ -121,7 +121,7 @@ int main(int argc, char *argv[]){
 			//change_perso(data->actions,data->joueur,&(data->tour_action),&(data->tour_perso),&(data->etape),&(data->nb_action),&(data->affiche_message),data->nb_personnages,data->type_de_jeu);
 			data->trouve = 0;
 		}
-		verifie_fin_du_jeu(&data->terminer,data->joueur,data->salles,data->type_de_jeu,data->nb_personnages);
+		verifie_fin_du_jeu(&data->terminer,data->joueur,data->salles);
 
 		SDL_RenderPresent(ecran);
 

@@ -34,11 +34,11 @@ void refresh_game(SDL_Renderer *ecran, ressources textures, data_t* data)
 
         SDL_Delay(1000);
         data->affiche_message = 0;
-        //change_action(data->actions,&(data->tour_action),&(data->tour_perso),&(data->etape),&(data->affiche_message),data->nb_personnages,data->joueur,data->type_de_jeu);
+        //change_action(data->actions,&(data->tour_action),&(data->tour_perso),&(data->etape),&(data->affiche_message),data->joueur,data->type_de_jeu);
     }
 
 
-    for (int i = 0; i<data->nb_personnages; i++){
+    for (int i = 0; i<NB_PERSO; i++){
     	if (data->joueur[i].state)
     		affiche_joueur(ecran,textures.sprites_elements,data->joueur[i],i);
     }
@@ -71,24 +71,17 @@ void clean_game(SDL_Window *fenetre, SDL_Renderer *ecran, ressources *textures, 
 	SDL_Quit();
 }
 
-void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau,char type_de_jeu,int nb_personnage){
-    if (type_de_jeu == 's' &&(!joueurs[0].state || !joueurs[1].state)){//Si le joueur joue en mode solo et qu'un des deux persos est mort
-        *terminer = 1; //On sort de la boucle de jeu
-    } else {
+void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau){
         int i = 0,est_vivant = 0;
-        while(i < nb_personnage && !est_vivant){
+        while(i < NB_PERSO && !est_vivant){
             if (joueurs[i].state)
                 est_vivant = 1;
             i++;
         }
-
-        if (type_de_jeu == 'm' && !est_vivant){//si tous les joueurs ont perdu
-            *terminer = 1; //On sort de la boucle de jeu
-        }
-    }
     int abs,ord;
-    int i = 0,fini = 1;
-    while(i < nb_personnage && fini){
+    int fini = 1;
+		i = 0;
+    while(i < NB_PERSO && fini){
         if (joueurs[i].x != abs || joueurs[i].y != ord)
             fini = 0;
         i++;
@@ -185,14 +178,13 @@ void trouve_selection_menu(int x_souris,int y_souris, int* rester_dans_menu,int*
 	SDL_Rect* rect = recherche_rect_messages(*numero_menu,&nb_choix,rectMessages);
 	while (!trouve && choix<nb_choix){
 		if (clic_menu(rect[choix],x_souris, y_souris)){//Si le joueur a cliqué sur un choix du menu
-                
-			
+
+
 			if (*numero_menu == 2){//Si le joueur est dans le menu 2 (choix du plateau)
 				*data = gestion_plateau(choix + 1);
                 *numero_menu = *numero_menu + 1;
-                (*data)->nb_personnages = 2;
 
-				(*data)->joueur = creer_perso((*data)->nb_personnages);
+				(*data)->joueur = creer_perso(NB_PERSO);
 
                 *jouer = 1;//On sort du menu et on peut jouer
         		*rester_dans_menu = 1;

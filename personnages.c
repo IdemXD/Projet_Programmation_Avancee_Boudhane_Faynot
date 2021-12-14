@@ -8,8 +8,8 @@
 
 Perso* creer_perso()
 {
-  Perso *p = malloc(sizeof(Perso)*2); //Il y a deux personnages.
-  for(int i = 0;i < 2;i++)
+  Perso *p = malloc(sizeof(Perso)*NB_PERSO); //Il y a deux personnages.
+  for(int i = 0;i < NB_PERSO;i++)
   {
     p[i].x = 0 + i*4; //Initialise l'abscisse des personnages.
     p[i].y = 0 + i*4; //Initialise l'ordonnée des personnages.
