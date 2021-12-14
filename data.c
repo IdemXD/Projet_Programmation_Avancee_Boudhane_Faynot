@@ -198,6 +198,7 @@ void trouve_selection_menu(int x_souris,int y_souris, int* rester_dans_menu,int*
                 } else {
                 	(*data)->type_de_jeu = 'm';
                 }
+                (*data)->nb_personnages = 2;
 
 				(*data)->joueur = creer_perso((*data)->nb_personnages);
 
