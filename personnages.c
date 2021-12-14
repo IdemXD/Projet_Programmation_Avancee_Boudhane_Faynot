@@ -46,14 +46,6 @@ void free_perso(Perso *p)
   free(p);
 }
 
-int joueurToPersos (int nbJoueurs){
-    if (nbJoueurs == 1){//Si il n'y a qu'un joueur, il a le droit a deux personnages
-        return 2;
-    }
-    //Sinon un personnage par joueur
-    return nbJoueurs;
-}
-
 void print_stats(Perso *p, int i)
 {
   printf("Point de mouvement du joueur %d : %d/%d.\n",i + 1,p[i].mouv, p[i].mouv);

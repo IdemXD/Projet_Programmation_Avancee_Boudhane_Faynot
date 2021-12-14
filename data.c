@@ -45,7 +45,7 @@ void refresh_game(SDL_Renderer *ecran, ressources textures, data_t* data)
 
     for (int i = 0; i<CONST_MOUV; i++){
 
-    
+
     }
 
 }
@@ -158,7 +158,7 @@ void appliquer_texte_menu(int numero_menu,SDL_Renderer* ecran,SDL_Rect** rectMes
     if(numero_menu==2){
 
         appliquer_texte(ecran,rectMessages[numero_menu-1][0].x, rectMessages[numero_menu-1][0].y, rectMessages[numero_menu-1][0].w, rectMessages[numero_menu-1][0].h, "Plateau 1", textures.police);
-	
+
     }
     if(numero_menu==3){
         appliquer_texte(ecran,325, 145, 295, 50, "Mode de jeu", textures.police);
@@ -179,7 +179,7 @@ SDL_Rect* recherche_rect_messages(int numero_menu, int* nb_choix,SDL_Rect** rect
 		*nb_choix = 2;
 	}
 	if (numero_menu == 2){
-          *nb_choix = 5;        
+          *nb_choix = 5;
 	}
 	if (numero_menu == 3){
 		*nb_choix = 4;
@@ -191,14 +191,13 @@ void trouve_selection_menu(int x_souris,int y_souris, int* rester_dans_menu,int*
 	int trouve = 0, choix = 0, nb_choix;
 	SDL_Rect* rect = recherche_rect_messages(*numero_menu,&nb_choix,rectMessages);
 	while (!trouve && choix<nb_choix){
-		if (clic_menu(rect[choix],x_souris, y_souris)){//Si le joueur a cliqué sur un choix du menu 
+		if (clic_menu(rect[choix],x_souris, y_souris)){//Si le joueur a cliqué sur un choix du menu
 			if (*numero_menu == 3){ //Si le joueur est dans le menu 3
 				if (!choix){ //Si il choisit le premier choix (1 joueur), il joue en mode solo
                 	(*data)->type_de_jeu = 's';
                 } else {
                 	(*data)->type_de_jeu = 'm';
                 }
-                (*data)->nb_personnages = joueurToPersos(choix+1);
 
 				(*data)->joueur = creer_perso((*data)->nb_personnages);
 

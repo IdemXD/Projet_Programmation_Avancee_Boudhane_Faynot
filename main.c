@@ -61,23 +61,23 @@ int main(int argc, char *argv[]){
 
 						case SDLK_DOWN:
 									data->active_direction = 'b';
-									deplacement(data->salles,data->joueur,data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+									deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
 						break;
 
 						case SDLK_UP:
-						
+
 								data->active_direction = 'h';
-								deplacement(data->salles,data->joueur,data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
 							break;
 
-						case SDLK_LEFT:		
+						case SDLK_LEFT:
 								data->active_direction = 'g';
-								deplacement(data->salles,data->joueur,data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
 							break;
 
 						case SDLK_RIGHT:
 								data->active_direction = 'd';
-								deplacement(data->salles,data->joueur,data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
 							break;
 
 
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
                     }
                     if(data->active_direction_salle==3 && data->move==3 ) {
                         int x = -1, y = -1;
-                
+
                             data->affiche_message = 0;
                             data->active_direction_salle = 0;
                             data->move=0;

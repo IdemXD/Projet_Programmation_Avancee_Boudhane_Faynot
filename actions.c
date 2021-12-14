@@ -28,6 +28,7 @@ void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x,
 	else if (p->y-1 >= 0 && *direction == 'h'){
 		p->y = p->y - 1 ;
 	}
+  p[i].mouv--;
  }
   else
   {
@@ -37,7 +38,7 @@ void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x,
   action_salle(plateau,p,i);
 
 }
- 
+
 
 
 void vie(Perso *p, int i, int v)
