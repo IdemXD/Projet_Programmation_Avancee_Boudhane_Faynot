@@ -7,36 +7,49 @@
 #include "actions.h"
 #include "salle.h"
 
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int i)
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i)
 {
-  if(p[i].mouv != 0)
+  if(p[*i].mouv != 0)
   {
+  		//Cas où le joueur choisit droite
+  	if(p[*i].x+1 < TAILLE_PL && *direction == 'd')
+    {
+  		p[*i].x = p[*i].x + 1;
+      p[*i].mouv--;
+  	}
+  	//Cas où le joueur choisit gauche
+  	else if(p[*i].x-1 >= 0 && *direction == 'g')
+    {
+  		p[*i].x = p[*i].x - 1;
+      p[*i].mouv--;
+  	}
+  	//Cas où le joueur choisit bas
+  	else if (p[*i].y+1 < TAILLE_PL && *direction == 'b')
+    {
+  		p[*i].y = p[*i].y + 1;
+      p[*i].mouv--;
+  	}
+  	//Cas où le joueur choisit haut
+  	else if (p[*i].y-1 >= 0 && *direction == 'h')
+    {
+  		p[*i].y = p[*i].y - 1;
+      p[*i].mouv--;
+  	}
+  }
 
-		//Cas où le joueur choisit droite
-	if(p->x+1 < TAILLE_PL && *direction == 'd'){
-		p->x = p->x + 1 ;
-	}
-	//Cas où le joueur choisit gauche
-	else if(p->x-1 >= 0 && *direction == 'g'){
-		p->x = p->x - 1 ;
-	}
-	//Cas où le joueur choisit bas
-	else if (p->y+1 < TAILLE_PL && *direction == 'b'){
-		p->y = p->y + 1 ;
-	}
-	//Cas où le joueur choisit haut
-	else if (p->y-1 >= 0 && *direction == 'h'){
-		p->y = p->y - 1 ;
-	}
-  p[i].mouv--;
- }
-  else
+	modif_visible_et_etat(plateau,p[*i].x,p[*i].y);
+  action_salle(plateau,p,&i);
+
+  if(p[*i].mouv == 0)
   {
     printf("Vous ne pouvez pas vous deplacer, vous n'avez plus de point de mouvement.\n");
+    if(*i == 1)
+    {
+      *i *= -1;
+    }
+    *i += 1;
   }
-	modif_visible_et_etat(plateau,p->x,p->y);
-  action_salle(plateau,p,i);
-
+  mouvement(p, *i);
 }
 
 

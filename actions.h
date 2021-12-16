@@ -14,12 +14,12 @@
 
   /**
     *\brief Déplace le personnage
+    *\param plateau Le pplateau
     *\param p Le pointeur sur les personnages
-    *\param i Indice permettant de savoir quel personnage se déplace (0 ou 1)
-    *\param x Déplacement sur l'abscisse
-    *\param y Déplacement sur l'ordonnée
+    *\param direction Caractère précisant la direction du personnage
+    *\param i Pointeur sur l'indice permettant de savoir quel personnage se déplace (0 ou 1)
     */
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int i);
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i);
 
 
 /**

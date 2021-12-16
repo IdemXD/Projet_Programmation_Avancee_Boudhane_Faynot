@@ -61,23 +61,27 @@ int main(int argc, char *argv[]){
 
 						case SDLK_DOWN:
 									data->active_direction = 'b';
-									deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
+									deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso);
+									printf("%d 1er down\n",data->tour_perso);
 						break;
 
 						case SDLK_UP:
 
 								data->active_direction = 'h';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
+								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso);
+								printf("%d 1er up\n",data->tour_perso);
 							break;
 
 						case SDLK_LEFT:
 								data->active_direction = 'g';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
+								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso);
+								printf("%d 1er left\n",data->tour_perso);
 							break;
 
 						case SDLK_RIGHT:
 								data->active_direction = 'd';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
+								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso);
+								printf("%d 1er right\n",data->tour_perso);
 							break;
 
 
@@ -115,7 +119,6 @@ int main(int argc, char *argv[]){
 			data->trouve = 0;
 		}
 		verifie_fin_du_jeu(&data->terminer,data->joueur,data->salles);
-
 		SDL_RenderPresent(ecran);
 
 	}
