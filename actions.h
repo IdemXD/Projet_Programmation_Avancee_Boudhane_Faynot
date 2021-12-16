@@ -19,7 +19,7 @@
     *\param x Déplacement sur l'abscisse
     *\param y Déplacement sur l'ordonnée
     */
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x, int y);
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int i);
 
 
 /**
@@ -59,9 +59,8 @@ void attaque(Perso *p, int att, int def);
 /**
   *\brief Fais se combattre les personnages et défini qui attaque en premier
   *\param p Le pointeur sur les personnages
-  *\param fin Pointeur sur la variable de fin du jeu (1 le jeu continue, 0 le jeu se termine)
   */
-void combat(Perso *p, int *fin);
+void combat(Perso *p);
 
 
   #endif

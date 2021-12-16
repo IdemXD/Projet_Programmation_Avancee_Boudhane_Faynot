@@ -19,6 +19,7 @@ static const char LETTRES_SALLES[7] = {'X','S','A','D','N','E','Z'} ;
 /**
   *\brief Nombre d'action constant
   */
+  
 #define CONST_MOUV 1
 
 #define NB_PERSO 2

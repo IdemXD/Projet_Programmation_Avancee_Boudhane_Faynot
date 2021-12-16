@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
 
 	int x_curseur = -1, y_curseur = -1;
 	// Boucle principale
-	while(jouer && !data->terminer)
+	while(!data->terminer)
 	{
 		refresh_game(ecran, textures, data);
 
@@ -61,23 +61,23 @@ int main(int argc, char *argv[]){
 
 						case SDLK_DOWN:
 									data->active_direction = 'b';
-									deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+									deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
 						break;
 
 						case SDLK_UP:
 
 								data->active_direction = 'h';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
 							break;
 
 						case SDLK_LEFT:
 								data->active_direction = 'g';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
 							break;
 
 						case SDLK_RIGHT:
 								data->active_direction = 'd';
-								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso,data->joueur->x,data->joueur->y);
+								deplacement(data->salles,data->joueur,&data->active_direction,data->tour_perso);
 							break;
 
 
@@ -104,13 +104,6 @@ int main(int argc, char *argv[]){
                         data->active_direction_salle = 0;
                         data->move=0;
                     }
-
-
-					if (data->etape == 1){
-
-					}
-
-
 			}
 
 		if (data->trouve){
@@ -126,7 +119,7 @@ int main(int argc, char *argv[]){
 		SDL_RenderPresent(ecran);
 
 	}
-    if (jouer && data->terminer == 2){
+    if (data->terminer == 2){
         appliquer_texte(ecran,325, 145, 295, 50, "Bravo!", textures.police);
         SDL_Delay(1000);
     }

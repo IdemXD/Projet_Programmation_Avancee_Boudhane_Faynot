@@ -7,7 +7,7 @@
 #include "actions.h"
 #include "salle.h"
 
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int i, int x, int y)
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int i)
 {
   if(p[i].mouv != 0)
   {
@@ -74,7 +74,7 @@ void attaque(Perso *p, int att, int def)
   vie(p, def, deg);
 }
 
-void combat(Perso *p, int *fin)
+void combat(Perso *p)
 {
   srand(time(NULL));  //Pour le randint de combat
   int r1 = 0, r2 = 0; //Initialise deux variables pour le randint à 0 pour rentrer dans la boucle.
@@ -99,7 +99,6 @@ void combat(Perso *p, int *fin)
     if(estMort(p, 1) == 1)
     {
       printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
-      *fin = 0;
     }
     else  //Le joueur 1 n'a pas tué le joueur 2.
     {
@@ -108,7 +107,6 @@ void combat(Perso *p, int *fin)
       if(estMort(p, 0) == 1)
       {
         printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
-        *fin = 0;
       }
     }
   }
@@ -119,7 +117,6 @@ void combat(Perso *p, int *fin)
     if(estMort(p, 0) == 1)
     {
       printf("Bien joué au joueur %d pour avoir gagné la partie !\n",2);
-      *fin = 0;
     }
     else  //Le joueur 2 n'a pas tué le joueur 1.
     {
@@ -128,7 +125,6 @@ void combat(Perso *p, int *fin)
       if(estMort(p, 1) == 1)
       {
         printf("Bien joué au joueur %d pour avoir gagné la partie !\n",1);
-        *fin = 0;
       }
     }
   }
