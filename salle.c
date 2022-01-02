@@ -8,37 +8,45 @@
 
 
 
-void action_salle(salle_t**  pl,Perso* joueur,int tour_perso){
+void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
     int x=joueur->x;
     int y=joueur->y;
     char type;
     int a,b;
     Pile* pile =initialiser();
     creer_pile(pile);
+        vie_poison(joueur,tour_perso);
+        Salle_combat(pl,joueur,tour);
         switch (pl[y][x].type) {
             case 'S':
-              salle_soin(pl,joueur,tour_perso,x,y);
+              Salle_soin(pl,joueur,tour_perso,x,y);
             break;
             case 'P':
-                salle_poison(joueur,tour_perso);
+                Salle_poison(joueur,tour_perso);
             break;
             case 'E':
-               salle_arme(EPEE,joueur);
+               Salle_arme(EPEE,joueur);
             break;
             case 'H':
-               salle_arme(HACHE,joueur);
+               Salle_arme(HACHE,joueur);
             break;
             case 'D':
-               salle_arme(DAGUE,joueur);
+               Salle_arme(DAGUE,joueur);
             break;
             case 'L':
-                salle_arme(LANCE,joueur);
+                Salle_arme(LANCE,joueur);
             case 'B':
-                salle_arme(BOUCLIER,joueur);
+                Salle_arme(BOUCLIER,joueur);
             break;
             case 'Z':
                 type=depiler(pile);
                 Salle_surprise(pl,joueur,type,tour_perso,a,b);
+            break;
+            case 'O':
+                //Salle_passage(pl,joueur);
+            break;
+            case 'F':
+                combat(joueur);
             break;
 
                 
@@ -61,9 +69,9 @@ void modif_visible_et_etat(salle_t** plateau,int x, int y){
 
 
 
-void salle_soin(salle_t** pl,Perso* perso,int tour_perso,int x,int y){
-    if(perso[tour_perso].etat=1){
-    perso[tour_perso].etat=1;
+void Salle_soin(salle_t** pl,Perso* perso,int* tour_perso,int x,int y){
+    if(perso[*tour_perso].etat=1){
+    perso[*tour_perso].etat=1;
     perso->pv=+10;
     }
     switch (pl[x][y].cpt_use)
@@ -88,17 +96,22 @@ void salle_soin(salle_t** pl,Perso* perso,int tour_perso,int x,int y){
     
 }
 
-void salle_poison(Perso* perso,int tour_perso){
-    perso[tour_perso].etat=0;
+void Salle_poison(Perso* perso,int* tour_perso){
+    perso[*tour_perso].etat=0;
     perso->pv--;
 }
 
+void vie_poison(Perso* perso,int* tour_perso){
+    if(perso[*tour_perso].etat==0){
+        perso->pv--;
+    }
+}
 
-void salle_arme(Arme a,Perso* joueur){
+void Salle_arme(Arme a,Perso* joueur){
     joueur->o=init_objet(a);
 }
 
-void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int tour_perso ,char salle, int* a , int* b) {
+void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int* tour_perso ,char salle, int* a , int* b) {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
 
@@ -111,7 +124,36 @@ void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int tour_perso ,char 
     }
 }
 
-void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int tour_perso,int a,int b){
+void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int* tour_perso,int a,int b){
     Cherche_salle_specifique(pl,persos,tour_perso,'Z',&a,&b);
     pl[a][b].type=salle_Depile;
+}
+
+void Salle_chaleur(Perso* perso,int* tour_perso){
+    perso[*tour_perso].etat=0;
+    perso->mouv--;
+}
+
+void Salle_passage(salle_t** pl,Perso* perso){  
+    for (int i = 0 ; i<5 ; i++){
+        for (int j =0 ; j<5 ; j++){
+            if (pl[i][j].type == 'O' && perso->x != pl[i][j].x && perso->y != pl[i][j].y && pl[perso->y][perso->x].state){
+                perso->x=j;
+                perso->y=i;
+            }
+        }
+    }
+
+}
+
+
+void Salle_combat(salle_t** pl, Perso* joueur,int tour){
+    if(tour== 6 || tour==12 || tour==18){
+    joueur[0].x=2;
+    joueur[0].y=2;
+    joueur[1].x=2;
+    joueur[1].y=2;
+    modif_visible_et_etat(pl,joueur[0].x,joueur[0].y);
+    
+}
 }

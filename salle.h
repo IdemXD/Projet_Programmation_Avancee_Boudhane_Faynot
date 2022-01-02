@@ -26,16 +26,28 @@ struct salle_s{
 typedef struct salle_s salle_t;
 
 
-void salle_arme(Arme a,Perso* joueur);
+void Salle_arme(Arme a,Perso* joueur);
 
-void salle_soin(salle_t** pl,Perso* perso,int tour_perso,int x,int y);
+void Salle_soin(salle_t** pl,Perso* perso,int* tour_perso,int x,int y);
 
-void salle_poison(Perso* perso,int tour_perso);
+void Salle_poison(Perso* perso,int* tour_perso);
+
+void vie_poison(Perso* perso,int* tour_perso);
 
 
-void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int tour_perso ,char salle, int* a , int* b);
+void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int* tour_perso ,char salle, int* a , int* b);
 
+void Salle_combat(salle_t** pl,Perso* joueur,int tour);
 
-void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int tour_perso,int a,int b);
+void Salle_surprise(salle_t **pl,Perso* persos,char salle_Depile,int* tour_perso,int a,int b);
+
+void Salle_chaleur(Perso* perso,int* tour_perso);
+
+void Salle_passage(salle_t** pl,Perso* perso);
+
+void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso, int tour);
+
+void modif_visible_et_etat(salle_t** plateau,int x, int y);
 
 #endif
+

@@ -19,7 +19,7 @@
     *\param direction Caractère précisant la direction du personnage
     *\param i Pointeur sur l'indice permettant de savoir quel personnage se déplace (0 ou 1)
     */
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i);
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i,int tour);
 
 
 /**

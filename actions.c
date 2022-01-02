@@ -7,8 +7,9 @@
 #include "actions.h"
 #include "salle.h"
 
-void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i)
+void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i,int tour)
 {
+
   if(p[*i].mouv != 0)
   {
   		//Cas où le joueur choisit droite
@@ -38,7 +39,7 @@ void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i)
   }
 
 	modif_visible_et_etat(plateau,p[*i].x,p[*i].y);
-  action_salle(plateau,p,&i);
+  action_salle(plateau,p,i,tour);
 
   if(p[*i].mouv == 0)
   {
@@ -50,6 +51,7 @@ void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i)
     *i += 1;
   }
   mouvement(p, *i);
+  
 }
 
 
