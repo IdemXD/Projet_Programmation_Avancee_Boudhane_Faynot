@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 									print_stats(data->joueur,data->tour_perso);
 									printf("%d 1er down\n",data->tour_perso);
 									tour++;
-									printf("lol %i :",tour);
+								
 									
 						break;
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
 								print_stats(data->joueur,data->tour_perso);
 								printf("%d 1er up\n",data->tour_perso);
 								tour++;
-								printf("%i :",tour);
+						
 								
 							break;
 
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]){
 								print_stats(data->joueur,data->tour_perso);
 								printf("%d 1er left\n",data->tour_perso);
 								tour++;
-								printf("%i :",tour);
+								
 							break;
 
 						case SDLK_RIGHT:
@@ -100,54 +100,21 @@ int main(int argc, char *argv[]){
 								print_stats(data->joueur,data->tour_perso);
 								printf("%d 1er right\n",data->tour_perso);
 								tour++;
-								printf("%i :",tour);
 								
 							break;
 
 
 					}
 					break;
-				case SDL_MOUSEMOTION:
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-                    if(data->active_direction_salle==2 && data->move==2 ) {
-                        int x = -1, y = -1;
-                        data->active_direction_salle = 0;
-                        data->move=0;
-                    }
-                    if(data->active_direction_salle==3 && data->move==3 ) {
-                        int x = -1, y = -1;
-
-                            data->affiche_message = 0;
-                            data->active_direction_salle = 0;
-                            data->move=0;
-                    }
-                    if(data->active_direction_salle==4 && data->move==4 ) {
-                        int x = -1, y = -1;
-                        data->affiche_message = 0;
-                        data->active_direction_salle = 0;
-                        data->move=0;
-                    }
+				
 			}
 
-		if (data->trouve){
-
-			//data->joueur[data->tour_perso].actions[data->tour_action] = data->nb_action;//On enregistre le numéro de l'action choisie
-            data->affiche_message = 1;
-
-			//change_perso(data->actions,data->joueur,&(data->tour_action),&(data->tour_perso),&(data->etape),&(data->nb_action),&(data->affiche_message),data->nb_personnages,data->type_de_jeu);
-			data->trouve = 0;
-		}
 		
 		
 		verifie_fin_du_jeu(&data->terminer,data->joueur,data->salles);
 		SDL_RenderPresent(ecran);
 
 	}
-    if (data->terminer == 2){
-        appliquer_texte(ecran,325, 145, 295, 50, "Bravo!", textures.police);
-        SDL_Delay(1000);
-    }
 	clean_game(fenetre, ecran, &textures, data);
 	return 0;
 }

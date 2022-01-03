@@ -10,6 +10,7 @@
 
 #include "constantes.h"
 #include "personnages.h"
+
 #include "objet.h"
 
 
@@ -32,7 +33,7 @@ void Salle_soin(salle_t** pl,Perso* perso,int* tour_perso,int x,int y);
 
 void Salle_poison(Perso* perso,int* tour_perso);
 
-void vie_poison(Perso* perso,int* tour_perso);
+void vie_poison(salle_t** pl,salle_t* salle,Perso* perso,int* tour_perso);
 
 
 void Cherche_salle_specifique(salle_t** pl ,Perso*  persos,int* tour_perso ,char salle, int* a , int* b);

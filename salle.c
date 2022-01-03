@@ -3,7 +3,7 @@
 
 #include "salle.h"
 #include "pile.h"
-
+#include "actions.h"
 
 
 
@@ -15,7 +15,7 @@ void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
     int a,b;
     Pile* pile =initialiser();
     creer_pile(pile);
-        vie_poison(joueur,tour_perso);
+        vie_poison(pl,&pl[y][x],joueur,tour_perso);
         Salle_combat(pl,joueur,tour);
         switch (pl[y][x].type) {
             case 'S':
@@ -43,7 +43,7 @@ void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
                 Salle_surprise(pl,joueur,type,tour_perso,a,b);
             break;
             case 'O':
-                //Salle_passage(pl,joueur);
+                Salle_passage(pl,joueur);
             break;
             case 'F':
                 combat(joueur);
@@ -99,11 +99,15 @@ void Salle_soin(salle_t** pl,Perso* perso,int* tour_perso,int x,int y){
 void Salle_poison(Perso* perso,int* tour_perso){
     perso[*tour_perso].etat=0;
     perso->pv--;
+    
 }
 
-void vie_poison(Perso* perso,int* tour_perso){
-    if(perso[*tour_perso].etat==0){
-        perso->pv--;
+void vie_poison(salle_t** pl,salle_t* salle,Perso* perso,int* tour_perso){
+    if(pl[perso->y][perso->x].type!='S'&& perso[*tour_perso].etat==0){
+        Salle_poison(perso,tour_perso);
+        if(perso->pv==0){
+            perso->state=0;
+        }
     }
 }
 

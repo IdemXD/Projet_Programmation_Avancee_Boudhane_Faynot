@@ -40,6 +40,7 @@ void deplacement(salle_t** plateau,Perso *p,const char* direction, int *i,int to
 
 	modif_visible_et_etat(plateau,p[*i].x,p[*i].y);
   action_salle(plateau,p,i,tour);
+  
 
   if(p[*i].mouv == 0)
   {
