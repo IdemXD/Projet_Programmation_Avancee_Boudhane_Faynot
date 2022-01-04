@@ -72,18 +72,12 @@ void clean_game(SDL_Window *fenetre, SDL_Renderer *ecran, ressources *textures, 
 }
 
 void verifie_fin_du_jeu(int* terminer,Perso* joueurs,salle_t** plateau){
-        int i = 0,est_vivant = 0;
-        while(i < NB_PERSO && !est_vivant){
-            if (joueurs[i].state)
-                est_vivant = 1;
-            i++;
-        }
-    int abs,ord;
-    int fini = 1;
-		i = 0;
-    while(i < NB_PERSO && fini){
-        if (joueurs[i].x != abs || joueurs[i].y != ord)
-            fini = 0;
+    int abs, ord;
+    int fini = 0;
+		int i = 0;
+    while(i < NB_PERSO && !fini){
+        if (joueurs[i].state == 0)
+            fini = 1;
         i++;
     }
     if (fini){
@@ -148,6 +142,7 @@ void appliquer_texte_menu(int numero_menu,SDL_Renderer* ecran,SDL_Rect** rectMes
     if(numero_menu==2){
 
         appliquer_texte(ecran,rectMessages[numero_menu-1][0].x, rectMessages[numero_menu-1][0].y, rectMessages[numero_menu-1][0].w, rectMessages[numero_menu-1][0].h, "Plateau 1", textures.police);
+				appliquer_texte(ecran,rectMessages[numero_menu-1][1].x, rectMessages[numero_menu-1][1].y, rectMessages[numero_menu-1][1].w, rectMessages[numero_menu-1][1].h, "Plateau 2", textures.police);
 
     }
 }

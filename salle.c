@@ -2,10 +2,6 @@
 #include <stdio.h>
 
 #include "salle.h"
-#include "pile.h"
-#include "actions.h"
-
-
 
 
 void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
@@ -16,7 +12,6 @@ void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
     Pile* pile =initialiser();
     creer_pile(pile);
         vie_poison(pl,&pl[y][x],joueur,tour_perso);
-        Salle_combat(pl,joueur,tour);
         switch (pl[y][x].type) {
             case 'S':
               Salle_soin(pl,joueur,tour_perso,x,y);
@@ -45,11 +40,8 @@ void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso,int tour){
             case 'O':
                 Salle_passage(pl,joueur);
             break;
-            case 'F':
-                combat(joueur);
-            break;
 
-                
+
     }
 }
 
@@ -72,40 +64,38 @@ void modif_visible_et_etat(salle_t** plateau,int x, int y){
 void Salle_soin(salle_t** pl,Perso* perso,int* tour_perso,int x,int y){
     if(perso[*tour_perso].etat=1){
     perso[*tour_perso].etat=1;
-    perso->pv=+10;
+    // vie(perso, *tour_perso, 10);
     }
     switch (pl[x][y].cpt_use)
     {
     case '1':
-        perso->pv=+10;
+        perso->pv+=10;
         break;
     case '2':
-        perso->pv=+7;
+        perso->pv+=7;
         break;
     case '3':
-        perso->pv=+4;
+        perso->pv+=4;
         break;
-    
+
     default:
         if(pl[x][y].cpt_use>3){
-            perso->pv=+2;
+            perso->pv+=2;
         }
         break;
     }
-    
-    
 }
 
 void Salle_poison(Perso* perso,int* tour_perso){
     perso[*tour_perso].etat=0;
     perso->pv--;
-    
+
 }
 
 void vie_poison(salle_t** pl,salle_t* salle,Perso* perso,int* tour_perso){
     if(pl[perso->y][perso->x].type!='S'&& perso[*tour_perso].etat==0){
         Salle_poison(perso,tour_perso);
-        if(perso->pv==0){
+        if(estMort(perso, *tour_perso) == 1){
             perso->state=0;
         }
     }
@@ -138,7 +128,7 @@ void Salle_chaleur(Perso* perso,int* tour_perso){
     perso->mouv--;
 }
 
-void Salle_passage(salle_t** pl,Perso* perso){  
+void Salle_passage(salle_t** pl,Perso* perso){
     for (int i = 0 ; i<5 ; i++){
         for (int j =0 ; j<5 ; j++){
             if (pl[i][j].type == 'O' && perso->x != pl[i][j].x && perso->y != pl[i][j].y && pl[perso->y][perso->x].state){
@@ -148,16 +138,4 @@ void Salle_passage(salle_t** pl,Perso* perso){
         }
     }
 
-}
-
-
-void Salle_combat(salle_t** pl, Perso* joueur,int tour){
-    if(tour== 6 || tour==12 || tour==18){
-    joueur[0].x=2;
-    joueur[0].y=2;
-    joueur[1].x=2;
-    joueur[1].y=2;
-    modif_visible_et_etat(pl,joueur[0].x,joueur[0].y);
-    
-}
 }

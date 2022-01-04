@@ -43,9 +43,9 @@ int main(int argc, char *argv[]){
 	while(!data->terminer)
 	{
 		refresh_game(ecran, textures, data);
-		
-		while( SDL_PollEvent( &evenements ) )
-			
+
+		while( SDL_PollEvent( &evenements ))
+		{
 			switch(evenements.type)
 			{
 				case SDL_QUIT:
@@ -62,55 +62,41 @@ int main(int argc, char *argv[]){
 
 						case SDLK_DOWN:
 									data->active_direction = 'b';
-									affichage_plateau_lettre(data->salles);
 									deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso,tour);
-									print_stats(data->joueur,data->tour_perso);
-									printf("%d 1er down\n",data->tour_perso);
+									printf("\n");
+									combat(data->joueur, tour, data->salles);
 									tour++;
-								
-									
-						break;
+									break;
 
 						case SDLK_UP:
 
 								data->active_direction = 'h';
-								affichage_plateau_lettre(data->salles);
 								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso,tour);
-								print_stats(data->joueur,data->tour_perso);
-								printf("%d 1er up\n",data->tour_perso);
+								printf("\n");
+								combat(data->joueur, tour, data->salles);
 								tour++;
-						
-								
-							break;
+								break;
 
 						case SDLK_LEFT:
 								data->active_direction = 'g';
-								affichage_plateau_lettre(data->salles);
 								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso,tour);
-								print_stats(data->joueur,data->tour_perso);
-								printf("%d 1er left\n",data->tour_perso);
+								printf("\n");
+								combat(data->joueur, tour, data->salles);
 								tour++;
-								
-							break;
+								break;
 
 						case SDLK_RIGHT:
 								data->active_direction = 'd';
-								affichage_plateau_lettre(data->salles);
 								deplacement(data->salles,data->joueur,&data->active_direction,&data->tour_perso,tour);
-								print_stats(data->joueur,data->tour_perso);
-								printf("%d 1er right\n",data->tour_perso);
+								printf("\n");
+								combat(data->joueur, tour, data->salles);
 								tour++;
-								
-							break;
-
-
+								break;
 					}
-					break;
-				
+			break;
 			}
+		}
 
-		
-		
 		verifie_fin_du_jeu(&data->terminer,data->joueur,data->salles);
 		SDL_RenderPresent(ecran);
 
