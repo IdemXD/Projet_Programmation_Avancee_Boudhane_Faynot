@@ -92,7 +92,7 @@ void print_objet(Objet o)
   {
     printf("Le nom de l'arme tenu est : %s.\n", nom_objet(o));
   }
-  printf("L'arme fait  %d de dégât.\n",o.degat);
+  printf("L'arme fait %d de dégât.\n",o.degat);
   printf("L'arme donne %d de protection.\n",o.protection);
   printf("L'arme possède un poids de : %d.\n",o.poids);
 }

@@ -10,7 +10,7 @@
 
 #include "constantes.h"
 #include "personnages.h"
-
+#include "pile.h"
 #include "objet.h"
 
 
@@ -26,6 +26,7 @@ struct salle_s{
 };
 typedef struct salle_s salle_t;
 
+#include "actions.h"
 
 void Salle_arme(Arme a,Perso* joueur);
 
@@ -51,4 +52,3 @@ void action_salle(salle_t**  pl,Perso* joueur,int* tour_perso, int tour);
 void modif_visible_et_etat(salle_t** plateau,int x, int y);
 
 #endif
-

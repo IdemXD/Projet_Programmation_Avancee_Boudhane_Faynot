@@ -59,8 +59,10 @@ void attaque(Perso *p, int att, int def);
 /**
   *\brief Fais se combattre les personnages et défini qui attaque en premier
   *\param p Le pointeur sur les personnages
+  *\param tour Entier permettant de connaître le nombre de tour_perso
+  *\param pl Double pointeur sur le plateau du jeu
   */
-void combat(Perso *p);
+void combat(Perso *p, int tour, salle_t** pl);
 
 
   #endif
