@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 
 	init_sdl();
 	// Créer la fenêtre
-	fenetre = SDL_CreateWindow("Jeu", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 900, 600, SDL_WINDOW_RESIZABLE);
+	fenetre = SDL_CreateWindow("The dungeon", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 900, 600, SDL_WINDOW_RESIZABLE);
 
 	if(fenetre == NULL)
 		// En cas d’erreur
