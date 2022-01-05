@@ -41,10 +41,6 @@ void refresh_game(SDL_Renderer *ecran, ressources textures, data_t* data)
     		affiche_joueur(ecran,textures.sprites_elements,data->joueur[i],i);
     }
 
-    for (int i = 0; i<CONST_MOUV; i++){
-
-
-    }
 
 }
 
@@ -106,7 +102,7 @@ void affichage_menu(int* jouer, SDL_Event* evenements,SDL_Renderer* ecran,ressou
     while (!rester_dans_menu){
         SDL_RenderClear(ecran);
         SDL_RenderCopy(ecran, textures.sprites_menu, NULL, NULL);
-        appliquer_texte(ecran,325, 45, 295, 50, "Jeu", textures.police);
+        appliquer_texte(ecran,325, 45, 295, 50, "The dungeon", textures.police);
         appliquer_texte_menu(numero_menu,ecran,rectTout,textures);
 	    while(SDL_PollEvent( evenements ))
             switch(evenements->type)
