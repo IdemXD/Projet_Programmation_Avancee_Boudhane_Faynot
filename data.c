@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>https://github.com/IdemXD/Projet_Programmation_Avancee_Boudhane_Faynot
 
 #include "data.h"
 
@@ -12,8 +12,6 @@ data_t * init_data()
     // Preparation des variables d'interactions personnages / actions
 	data->etape = 1; //etape 1 : choix de l'action
 	data->active_direction = 'n'; // définit quel direction le joueur choisit
-    data->active_direction_salle = 0;
-    data->move=0;
     data->trouve = 0;
     data->terminer = 0;
 	data->tour_perso = 0;
