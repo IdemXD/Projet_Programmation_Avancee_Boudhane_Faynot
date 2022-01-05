@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <SDL2/SDL.h>https://github.com/IdemXD/Projet_Programmation_Avancee_Boudhane_Faynot
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
 #include "data.h"
